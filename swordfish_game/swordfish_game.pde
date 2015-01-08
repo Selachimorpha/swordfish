@@ -33,6 +33,11 @@ void draw() {
       loc.x -= 5;
     }
   }
+  if (keyPressed) {
+    if (key == 'w') {
+      loc.y -= 5;
+    }
+  }
 }
 
 //class swordfish {
