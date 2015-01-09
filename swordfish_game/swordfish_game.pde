@@ -11,14 +11,18 @@ float speedx;
 float speedy;
 int running = 0;
 PImage oceanmenu;
+PImage bruce;
+PImage school;
 void setup() {
-colorMode(HSB, 360, 100, 100);
+  colorMode(HSB, 360, 100, 100);
   size(1000, 625);
   s = loadImage("swordfish.png");
   sdown = loadImage("swordfish down.png");
   pf = loadImage("pufferfish.png");
   nw = loadImage("narwhal.png");
   oceanmenu = loadImage("ocean menu.jpg");
+  bruce = loadImage("nemo-shark.jpg");
+  school = loadImage("FishSchool.jpg");
   loc = new PVector(0, 3*height/4);
   szx = 200;
   szy = 100;
@@ -36,7 +40,7 @@ void draw() {
     running = 1;
   }
   if (running == 1) {
-    background(360);
+    background(bruce);
     image(s, loc.x, loc.y, szx, szy);
     if (keyPressed) {
       if (key == 'd') {
@@ -51,6 +55,38 @@ void draw() {
     if (keyPressed) {
       if (key == 'w') {
         loc.y -= 5;
+      }
+    }
+    if (keyPressed) {
+      if (key == 's') {
+        loc.y += 5;
+      }
+    }
+  }
+  if (loc.x > width) {
+    running = 2;
+  }
+  if (running == 2) {
+    background(school);
+    image(s, loc.x, loc.y, szx, szy);
+    if (keyPressed) {
+      if (key == 'd') {
+        loc.x += 5;
+      }
+    }
+    if (keyPressed) {
+      if (key == 'a') {
+        loc.x -= 5;
+      }
+    }
+    if (keyPressed) {
+      if (key == 'w') {
+        loc.y -= 5;
+      }
+    }
+    if (keyPressed) {
+      if (key == 's') {
+        loc.y += 5;
       }
     }
   }
