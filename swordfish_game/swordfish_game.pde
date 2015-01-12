@@ -1,8 +1,8 @@
 //declare variables
 //swordfish
 PImage s;
-//swordfish down
 PImage sdown;
+int sposition;
 //pufferfish
 PImage pf;
 //narwhal
@@ -39,6 +39,7 @@ void setup() {
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
+
   //change location
   loc = new PVector(0, 3*height/4);
 
@@ -83,7 +84,12 @@ void draw() {
         loc.y += 5;
       }
     }
-    if (loc.x > width) {
+    if (keyPressed) {
+      if (key == ' ') {
+        image(sdown, loc.x, loc.y, szx, szy);
+      }
+    }
+    if (loc.x + szx/2 > width) {
       running = 2;
       loc.x = 0;
     }
@@ -115,7 +121,7 @@ void draw() {
         loc.y += 5;
       }
     }
-    if (loc.x > width) {
+    if (loc.x + szx/2 > width) {
       running = 3;
       loc.x = 0;
     }
@@ -147,7 +153,7 @@ void draw() {
         loc.y += 5;
       }
     }
-    if (loc.x > width) {
+    if (loc.x + szx/2 > width) {
       running = 4;
       loc.x = 0;
     }
