@@ -13,8 +13,9 @@ PVector loc;
 float szx;
 float szy;
 //speed
-float speedx;
-float speedy;
+PVector speed;
+//acceleration
+PVector acc;
 //changes level
 int running = 0;
 //background 1
@@ -42,6 +43,10 @@ void setup() {
 
   szx = 200;
   szy = 100;
+
+  //speed and acceleration
+  speed = new PVector(0, -20);
+  acc = new PVector(0, 1);
 }
 void draw() {
   background(oceanmenu);
@@ -73,7 +78,11 @@ void draw() {
     }
     if (keyPressed) {
       if (key == 'w') {
-        loc.y -= 5;
+        loc.add(speed);
+        speed.add(acc);
+      } else { 
+        speed = new PVector(0, -20);
+        acc = new PVector(0, 1);
       }
     }
     if (keyPressed) {
