@@ -24,7 +24,7 @@ void setup() {
   oceanmenu = loadImage("ocean menu.jpg");
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
-  spongebob = loadImage("spongebobstreet.jpg");
+  spongebob = loadImage("spongebobstreet.png");
   loc = new PVector(0, 3*height/4);
   szx = 200;
   szy = 100;
@@ -43,7 +43,8 @@ void draw() {
   }
   if (running == 1) {
     background(bruce);
-    
+        textSize(60);
+    text("Level 1", 100, 100);
     image(s, loc.x, loc.y, szx, szy);
     if (keyPressed) {
       if (key == 'd') {
@@ -72,6 +73,8 @@ void draw() {
   if (running == 2) {
     background(school);
     image(s, loc.x, loc.y, szx, szy);
+
+  
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -95,6 +98,7 @@ void draw() {
   }
   if (loc.x > width) {
     running = 2;
+    loc.x = 0;
   }
   if (running == 3) {
     background(spongebob);
