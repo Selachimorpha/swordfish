@@ -11,6 +11,7 @@ PVector loc;
 //size of swordfish
 float szx;
 float szy;
+int shape = 1;
 //speed
 float speedx;
 float speedy;
@@ -93,7 +94,7 @@ void draw() {
       loc.x = 0;
     }
   }
-  
+
   //level 2
   else if (running == 2) {
     background(school);
@@ -120,7 +121,7 @@ void draw() {
         loc.y += 5;
       }
     }
-        if (keyPressed) {
+    if (keyPressed) {
       if (key == ' ') {
         image(sdown, loc.x, loc.y, szx, szy);
       }
@@ -157,7 +158,7 @@ void draw() {
         loc.y += 5;
       }
     }
-        if (keyPressed) {
+    if (keyPressed) {
       if (key == ' ') {
         image(sdown, loc.x, loc.y, szx, szy);
       }
