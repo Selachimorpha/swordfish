@@ -81,12 +81,14 @@ void draw() {
         loc.y += 5;
       }
     }
+    if (loc.x > width) {
+      running = 2;
+      loc.x = 0;
+    }
   }
-  if (loc.x > width) {
-    running = 2;
-  }
+
   //level 2
-  if (running == 2) {
+  else if (running == 2) {
     background(school);
     textSize(60);
     text("Level 2", 50, 100);
@@ -118,7 +120,7 @@ void draw() {
   }
 
   //level 3
-  if (running == 3) {
+  else if (running == 3) {
     background(spongebob);
     textSize(60);
     text("Level 3", 50, 100);
