@@ -1,22 +1,34 @@
+//declare variables
+//swordfish
 PImage s;
+//swordfish down
 PImage sdown;
+//pufferfish
 PImage pf;
+//narwhal
 PImage nw;
-float x = 0;
-float y = 500;
+//location of swordfish
 PVector loc;
+//size of swordfish
 float szx;
 float szy;
+//speed
 float speedx;
 float speedy;
+//changes level
 int running = 0;
+//background 1
 PImage oceanmenu;
+//background level 1
 PImage bruce;
+//background level 2
 PImage school;
+//background level 3
 PImage spongebob;
 void setup() {
   colorMode(HSB, 360, 100, 100);
   size(1000, 625);
+  //load all images
   s = loadImage("swordfish.png");
   sdown = loadImage("swordfish down.png");
   pf = loadImage("pufferfish.png");
@@ -25,7 +37,9 @@ void setup() {
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
+  //change location
   loc = new PVector(0, 3*height/4);
+
   szx = 200;
   szy = 100;
 }
@@ -45,7 +59,7 @@ void draw() {
   if (running == 1) {
     background(bruce);
     textSize(60);
-    text("Level 1", 100, 100);
+    text("Level 1", 50, 100);
     image(s, loc.x, loc.y, szx, szy);
     if (keyPressed) {
       if (key == 'd') {
@@ -74,10 +88,9 @@ void draw() {
   //level 2
   if (running == 2) {
     background(school);
-    image(s, loc.x, loc.y, szx, szy);
     textSize(60);
-    text("Level 2", 100, 100);
-
+    text("Level 2", 50, 100);
+    image(s, loc.x, loc.y, szx, szy);
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -107,10 +120,9 @@ void draw() {
   //level 3
   if (running == 3) {
     background(spongebob);
-    image(s, loc.x, loc.y, szx, szy);
     textSize(60);
-    text("Level 3", 100, 100);
-
+    text("Level 3", 50, 100);
+    image(s, loc.x, loc.y, szx, szy);
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -137,17 +149,4 @@ void draw() {
     }
   }
 }
-
-//class swordfish {
-//  PVector loc;
-//  float sz;
-//
-//  swordfish(float x, float y) {
-//    loc = new PVector(0, height/4);
-//    sz = 100;
-//  }
-//  void display() {
-//    image(s, loc.x, loc.y, sz, sz);
-//  }
-//}
 
