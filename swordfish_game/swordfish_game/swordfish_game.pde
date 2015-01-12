@@ -40,8 +40,10 @@ void draw() {
     running = 1;
   }
   if (running == 1) {
+    //display
     background(bruce);
     image(s, loc.x, loc.y, szx, szy);
+    //controls
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
