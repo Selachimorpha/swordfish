@@ -41,9 +41,10 @@ void draw() {
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     running = 1;
   }
+  //level 1
   if (running == 1) {
     background(bruce);
-        textSize(60);
+    textSize(60);
     text("Level 1", 100, 100);
     image(s, loc.x, loc.y, szx, szy);
     if (keyPressed) {
@@ -70,11 +71,13 @@ void draw() {
   if (loc.x > width) {
     running = 2;
   }
+  //level 2
   if (running == 2) {
     background(school);
     image(s, loc.x, loc.y, szx, szy);
+    textSize(60);
+    text("Level 2", 100, 100);
 
-  
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -95,14 +98,19 @@ void draw() {
         loc.y += 5;
       }
     }
+    if (loc.x > width) {
+      running = 3;
+      loc.x = 0;
+    }
   }
-  if (loc.x > width) {
-    running = 2;
-    loc.x = 0;
-  }
+
+  //level 3
   if (running == 3) {
     background(spongebob);
     image(s, loc.x, loc.y, szx, szy);
+    textSize(60);
+    text("Level 3", 100, 100);
+
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -122,6 +130,10 @@ void draw() {
       if (key == 's') {
         loc.y += 5;
       }
+    }
+    if (loc.x > width) {
+      running = 4;
+      loc.x = 0;
     }
   }
 }
