@@ -13,6 +13,8 @@ int running = 0;
 PImage oceanmenu;
 PImage bruce;
 PImage school;
+PImage spongebob;
+Player swordfish;
 void setup() {
   colorMode(HSB, 360, 100, 100);
   size(1000, 625);
@@ -23,9 +25,11 @@ void setup() {
   oceanmenu = loadImage("ocean menu.jpg");
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
+  spongebob = loadImage("spongebobstreet.png");
   loc = new PVector(0, 3*height/4);
   szx = 200;
   szy = 100;
+  swordfish=new Player();
 }
 void draw() {
   background(oceanmenu);
@@ -39,61 +43,37 @@ void draw() {
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     running = 1;
   }
+
   if (running == 1) {
-    //display
+
     background(bruce);
-    image(s, loc.x, loc.y, szx, szy);
-    //controls
-    if (keyPressed) {
-      if (key == 'd') {
-        loc.x += 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'a') {
-        loc.x -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'w') {
-        loc.y -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 's') {
-        loc.y += 5;
-      }
-    }
+    textSize(60);
+    text("Level 1", 100, 100);
+    swordfish.display();
+    swordfish.move();
   }
-  if (loc.x > width) {
-    running = 2;
-    loc.x=0;
+
+  //    image(s, loc.x, loc.y, szx, szy);
+
+  if (swordfish.nextlevel() == true) {
+    running= 2;
   }
   if (running == 2) {
     background(school);
-    image(s, loc.x, loc.y, szx, szy);
-    if (keyPressed) {
-      if (key == 'd') {
-        loc.x += 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'a') {
-        loc.x -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'w') {
-        loc.y -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 's') {
-        loc.y += 5;
-      }
+    swordfish.display();
+    swordfish.move();
+    if (swordfish.nextlevel() == true) {
+      running = 3;
     }
   }
+  if (running == 3) {
+    background(spongebob);
+    swordfish.display();
+    swordfish.move();
+  }
 }
+
+
 
 //class swordfish {
 //  PVector loc;
