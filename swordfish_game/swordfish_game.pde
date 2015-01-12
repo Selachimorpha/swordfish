@@ -25,6 +25,8 @@ PImage bruce;
 PImage school;
 //background level 3
 PImage spongebob;
+//life of character
+float life = 3;
 void setup() {
   colorMode(HSB, 360, 100, 100);
   size(1000, 625);
@@ -149,6 +151,18 @@ void draw() {
       running = 4;
       loc.x = 0;
     }
+  }
+  //ways to die
+  if (loc.y > height) {
+    life = 0;
+  }
+  //death screen
+  if (life==0) {                                                 
+    background(#0710F0);                                         
+    textSize(36);                                                
+    text("CONGRATULATIONS!", width/3, height/2);                 
+    textSize(18);                                                
+    text("You have died ", width/3+110, height/2+40);
   }
 }
 
