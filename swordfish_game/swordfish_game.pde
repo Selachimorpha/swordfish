@@ -2,7 +2,6 @@
 //swordfish
 PImage s;
 PImage sdown;
-int sposition;
 //pufferfish
 PImage pf;
 //narwhal
@@ -23,10 +22,10 @@ PImage oceanmenu;
 PImage bruce;
 //background level 2
 PImage school;
-//background level 3
-PImage spongebob;
 //life of character
 float life = 3;
+//background level 3
+PImage spongebob;
 void setup() {
   colorMode(HSB, 360, 100, 100);
   size(1000, 625);
@@ -94,7 +93,7 @@ void draw() {
       loc.x = 0;
     }
   }
-
+  
   //level 2
   else if (running == 2) {
     background(school);
@@ -119,6 +118,11 @@ void draw() {
     if (keyPressed) {
       if (key == 's') {
         loc.y += 5;
+      }
+    }
+        if (keyPressed) {
+      if (key == ' ') {
+        image(sdown, loc.x, loc.y, szx, szy);
       }
     }
     if (loc.x + szx/2 > width) {
@@ -151,6 +155,11 @@ void draw() {
     if (keyPressed) {
       if (key == 's') {
         loc.y += 5;
+      }
+    }
+        if (keyPressed) {
+      if (key == ' ') {
+        image(sdown, loc.x, loc.y, szx, szy);
       }
     }
     if (loc.x + szx/2 > width) {
