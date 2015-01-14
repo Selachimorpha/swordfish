@@ -1,39 +1,36 @@
-class  {
-  PVector loc, acc, vel;
-  float sz, h, s, b, t;
+class pufferfish {
+  PVector locp, velp;
+  float szp;
+  PImage puffer;
 
 
-  GravityBall( float temph) {
-    sz=random(10, 30);
-    loc=new PVector(random(sz, width-sz), random(sz, height-sz));
-    vel=PVector.random2D();
-    //    acc=new PVector(0, .1);
-    h=temph;
-    s=100;
-    b=100;
-    t=50;
+  pufferfish() {
+    szp = 200;
+    locp=new PVector(random(szp, width-szp), random(szp, height-szp));
+    velp=PVector.random2D();
+    puffer = loadImage("pufferfish.png");
+   
   }
   void display() {
-    fill(h, s, b, t);
-    ellipse(loc.x, loc.y, sz, sz);
+    image(puffer, locp.x, locp.y, szp, szp);
   }
   void move() {
-    loc.add(vel);
+    locp.add(velp);
     //  vel.add(acc);
   }
   void bounce() { 
-    if (loc.x+sz/2> width || loc.x - sz/2 < 0) {
-      vel.x *= -1;
+    if (locp.x+szp/2 > width || locp.x - szp/2 < 0) {
+      velp.x *= -1;
     }
-    if (loc.y + sz/2 > height || loc.y - sz/2 < 0) {
-      vel.y *= -1;
+    if (locp.y + szp/2 > height || locp.y - szp/2 < 0) {
+      velp.y *= -1;
     }
   }
-  void collideWith(GravityBall other) {
-    if (loc.dist(other.loc) < sz/2 + other.sz/2) {
+  void collideWith(pufferfish other) {
+    if (locp.dist(other.locp) < szp/2 + other.szp/2) {
       {
-        vel = PVector.sub(loc, other.loc);
-        vel.normalize();
+        velp = PVector.sub(locp, other.locp);
+        velp.normalize();
       }
     }
   }

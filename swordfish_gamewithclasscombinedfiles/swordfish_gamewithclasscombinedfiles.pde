@@ -1,3 +1,4 @@
+ArrayList<pufferfish> pufferfishes = new ArrayList<pufferfish>();
 //declare variables
 //swordfish
 PImage s;
@@ -27,7 +28,6 @@ PImage school;
 float life = 3;
 //background level 3
 PImage spongebob;
-PImage narwhal;
 Player swordfish;
 void setup() {
   colorMode(HSB, 360, 100, 100);
@@ -35,12 +35,12 @@ void setup() {
   s = loadImage("swordfish.png");
   sdown = loadImage("swordfish down.png");
   pf = loadImage("pufferfish.png");
-  
+  nw = loadImage("narwhal.png");
   oceanmenu = loadImage("ocean menu.jpg");
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
-  narwhal = loadImage("NarwhalBlue.gif");
+
   //change location
   loc = new PVector(0, 3*height/4);
 
@@ -49,6 +49,7 @@ void setup() {
   swordfish=new Player();
 }
 void draw() {
+  println(life);
   background(oceanmenu);
   textSize(60);
   text("Selachimorpha", width/2-200, height/2-100);
@@ -59,26 +60,21 @@ void draw() {
   text("Start", width/2-45, 540);
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     running = 1;
-  }
-
- else if (running == 1) {
+  } else if (running == 1) {
 
     background(bruce);
     textSize(60);
     text("Level 1", 100, 100);
     swordfish.display();
     swordfish.move();
-//  image("narwhal", 0, 0);
-  image(narwhal, 10,10, width/4, height/4);
- }
+  }
 
   //    image(s, loc.x, loc.y, szx, szy);
 
   //level 2
   if (swordfish.nextlevel() == true) {
     running= 2;
-  }
- else if (running == 2) {
+  } else if (running == 2) {
     background(school);
     textSize(60);
     text("Level 2", 50, 100);
@@ -87,22 +83,25 @@ void draw() {
     if (swordfish.nextlevel() == true) {
       running = 3;
     }
-  }
- else if (running == 3) {
+  } else if (running == 3) {
     background(spongebob);
     textSize(60);
     text("Level 3", 50, 100);
     swordfish.display();
     swordfish.move();
   }
- 
-//ways to die
-  if (loc.y > height) {
+
+  //ways to die
+  if (swordfish.loc.y > height) {
+    println("went off the bottom of the screen");
     life = 0;
   }
   //death screen
-  if (life==0) {                                                 
-    background(#0710F0);                                         
+  if (life==0) { 
+
+    background(#0710F0);        
+    swordfish.loc.y=3*height/4;
+    swordfish.loc.x=0;
     textSize(36);                                                
     text("CONGRATULATIONS!", width/3, height/2);                 
     textSize(18);                                                
@@ -117,8 +116,6 @@ void draw() {
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     life = 3;
     running = 1;
-    loc.x=0;
-    loc.y=height;
   }
   //test to kill self
   if (keyPressed) {
@@ -127,4 +124,3 @@ void draw() {
     }
   }
 }
-
