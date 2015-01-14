@@ -1,11 +1,12 @@
 class pufferfish {
   PVector locp, velp;
-  float szp;
+  float szp, x, y;
   PImage puffer;
+  
 
 
-  pufferfish() {
-    szp = 200;
+  pufferfish(float x, float y) {
+    szp = 10;
     locp=new PVector(random(szp, width-szp), random(szp, height-szp));
     velp=PVector.random2D();
     puffer = loadImage("pufferfish.png");
