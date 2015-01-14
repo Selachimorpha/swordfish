@@ -1,6 +1,7 @@
 //declare variables
 //swordfish
 PImage s;
+//swordfish down
 PImage sdown;
 //pufferfish
 PImage pf;
@@ -11,10 +12,10 @@ PVector loc;
 //size of swordfish
 float szx;
 float szy;
-int shape = 1;
 //speed
-float speedx;
-float speedy;
+PVector speed;
+//acceleration
+PVector acc;
 //changes level
 int running = 0;
 //background 1
@@ -23,8 +24,6 @@ PImage oceanmenu;
 PImage bruce;
 //background level 2
 PImage school;
-//life of character
-float life = 3;
 //background level 3
 PImage spongebob;
 void setup() {
@@ -39,12 +38,15 @@ void setup() {
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
-
   //change location
   loc = new PVector(0, 3*height/4);
 
   szx = 200;
   szy = 100;
+
+  //speed and acceleration
+  speed = new PVector(0, -20);
+  acc = new PVector(0, 1);
 }
 void draw() {
   background(oceanmenu);
@@ -58,37 +60,12 @@ void draw() {
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     running = 1;
   }
-  //controls
-  if (keyPressed) {
-    if (key == 'd') {
-      loc.x += 5;
-    }
-  }
-  if (keyPressed) {
-    if (key == 'a') {
-      loc.x -= 5;
-    }
-  }
-  if (keyPressed) {
-    if (key == 'w') {
-      loc.y -= 5;
-    }
-  }
-  if (keyPressed) {
-    if (key == 's') {
-      loc.y += 5;
-    }
-  }
   //level 1
   if (running == 1) {
     background(bruce);
     textSize(60);
     text("Level 1", 50, 100);
     image(s, loc.x, loc.y, szx, szy);
-<<<<<<< HEAD
-
-    if (loc.x > width) {
-=======
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -101,7 +78,11 @@ void draw() {
     }
     if (keyPressed) {
       if (key == 'w') {
-        loc.y -= 5;
+        loc.add(speed);
+        speed.add(acc);
+      } else { 
+        speed = new PVector(0, -20);
+        acc = new PVector(0, 1);
       }
     }
     if (keyPressed) {
@@ -109,28 +90,16 @@ void draw() {
         loc.y += 5;
       }
     }
-    if (keyPressed) {
-      if (key == ' ') {
-        image(sdown, loc.x, loc.y, szx, szy);
-      }
-    }
-    if (loc.x + szx/2 > width) {
->>>>>>> origin/master
-      running = 2;
-      loc.x = 0;
-    }
   }
-
+  if (loc.x > width) {
+    running = 2;
+  }
   //level 2
-  else if (running == 2) {
+  if (running == 2) {
     background(school);
     textSize(60);
     text("Level 2", 50, 100);
     image(s, loc.x, loc.y, szx, szy);
-<<<<<<< HEAD
-
-    if (loc.x > width) {
-=======
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -151,28 +120,18 @@ void draw() {
         loc.y += 5;
       }
     }
-    if (keyPressed) {
-      if (key == ' ') {
-        image(sdown, loc.x, loc.y, szx, szy);
-      }
-    }
-    if (loc.x + szx/2 > width) {
->>>>>>> origin/master
+    if (loc.x > width) {
       running = 3;
       loc.x = 0;
     }
   }
 
   //level 3
-  else if (running == 3) {
+  if (running == 3) {
     background(spongebob);
     textSize(60);
     text("Level 3", 50, 100);
     image(s, loc.x, loc.y, szx, szy);
-<<<<<<< HEAD
-
-    if (loc.x > width) {
-=======
     if (keyPressed) {
       if (key == 'd') {
         loc.x += 5;
@@ -193,36 +152,9 @@ void draw() {
         loc.y += 5;
       }
     }
-    if (keyPressed) {
-      if (key == ' ') {
-        image(sdown, loc.x, loc.y, szx, szy);
-      }
-    }
-    if (loc.x + szx/2 > width) {
->>>>>>> origin/master
+    if (loc.x > width) {
       running = 4;
       loc.x = 0;
-    }
-  }
-  //ways to die
-  if (loc.y > height) {
-    life = 0;
-  }
-  //death screen
-  if (life==0) {                                                 
-    background(#0710F0);                                         
-    textSize(36);                                                
-    text("CONGRATULATIONS!", width/3, height/2);                 
-    textSize(18);                                                
-    text("You have died ", width/3+110, height/2+40);
-    fill(0);
-    rect(width/2-50, 500, 100, 50); 
-    fill(#FFFFFF);
-    textSize(38);
-    text("Retry", width/2-45, 540);
-    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
-      life = 3;
-      running = 1;
     }
   }
 }
