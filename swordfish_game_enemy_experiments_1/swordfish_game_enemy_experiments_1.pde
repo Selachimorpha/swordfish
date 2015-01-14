@@ -53,15 +53,13 @@ void draw() {
   textSize(60);
   text("Selachimorpha", width/2-200, height/2-100);
   fill(0);
-  rect(width/2-50, 500, 100, 50); 
+  rect(width/2-50, 500, 100, 50);
   fill(360);
   textSize(40);
   text("Start", width/2-45, 540);
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     running = 1;
-  }
-
- else if (running == 1) {
+  } else if (running == 1) {
 
     background(bruce);
     textSize(60);
@@ -75,8 +73,7 @@ void draw() {
   //level 2
   if (swordfish.nextlevel() == true) {
     running= 2;
-  }
- else if (running == 2) {
+  } else if (running == 2) {
     background(school);
     textSize(60);
     text("Level 2", 50, 100);
@@ -85,28 +82,27 @@ void draw() {
     if (swordfish.nextlevel() == true) {
       running = 3;
     }
-  }
- else if (running == 3) {
+  } else if (running == 3) {
     background(spongebob);
     textSize(60);
     text("Level 3", 50, 100);
     swordfish.display();
     swordfish.move();
   }
- 
-//ways to die
+
+  //ways to die
   if (loc.y > height) {
     life = 0;
   }
   //death screen
   if (life==0) {                                                 
-    background(#0710F0);                                         
+    background(#0710F0);
     textSize(36);                                                
     text("CONGRATULATIONS!", width/3, height/2);                 
     textSize(18);                                                
     text("You have died ", width/3+110, height/2+40);
     fill(0);
-    rect(width/2-50, 500, 100, 50); 
+    rect(width/2-50, 500, 100, 50);
     fill(#FFFFFF);
     textSize(38);
     text("Retry", width/2-45, 540);
