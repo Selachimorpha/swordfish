@@ -57,32 +57,34 @@ void draw() {
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     running = 1;
   }
+  //controls
+  if (keyPressed) {
+    if (key == 'd') {
+      loc.x += 5;
+    }
+  }
+  if (keyPressed) {
+    if (key == 'a') {
+      loc.x -= 5;
+    }
+  }
+  if (keyPressed) {
+    if (key == 'w') {
+      loc.y -= 5;
+    }
+  }
+  if (keyPressed) {
+    if (key == 's') {
+      loc.y += 5;
+    }
+  }
   //level 1
   if (running == 1) {
     background(bruce);
     textSize(60);
     text("Level 1", 50, 100);
     image(s, loc.x, loc.y, szx, szy);
-    if (keyPressed) {
-      if (key == 'd') {
-        loc.x += 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'a') {
-        loc.x -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'w') {
-        loc.y -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 's') {
-        loc.y += 5;
-      }
-    }
+
     if (loc.x > width) {
       running = 2;
       loc.x = 0;
@@ -95,26 +97,7 @@ void draw() {
     textSize(60);
     text("Level 2", 50, 100);
     image(s, loc.x, loc.y, szx, szy);
-    if (keyPressed) {
-      if (key == 'd') {
-        loc.x += 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'a') {
-        loc.x -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'w') {
-        loc.y -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 's') {
-        loc.y += 5;
-      }
-    }
+
     if (loc.x > width) {
       running = 3;
       loc.x = 0;
@@ -127,26 +110,7 @@ void draw() {
     textSize(60);
     text("Level 3", 50, 100);
     image(s, loc.x, loc.y, szx, szy);
-    if (keyPressed) {
-      if (key == 'd') {
-        loc.x += 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'a') {
-        loc.x -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 'w') {
-        loc.y -= 5;
-      }
-    }
-    if (keyPressed) {
-      if (key == 's') {
-        loc.y += 5;
-      }
-    }
+
     if (loc.x > width) {
       running = 4;
       loc.x = 0;
@@ -163,6 +127,15 @@ void draw() {
     text("CONGRATULATIONS!", width/3, height/2);                 
     textSize(18);                                                
     text("You have died ", width/3+110, height/2+40);
+    fill(0);
+    rect(width/2-50, 500, 100, 50); 
+    fill(#FFFFFF);
+    textSize(38);
+    text("Retry", width/2-45, 540);
+    if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+      life = 3;
+      running = 1;
+    }
   }
 }
 
