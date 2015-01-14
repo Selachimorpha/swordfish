@@ -6,7 +6,12 @@ class Player {
   }
 
   void display() {
-    image(s, loc.x, loc.y, szx, szy);
+
+    if (keyPressed && key == ' ') {
+      image(sdown, loc.x, loc.y, szx, szy);
+    } else {
+      image(s, loc.x, loc.y, szx, szy);
+    }
   }
 
   void move() {
@@ -26,22 +31,17 @@ class Player {
       if (key == 's') {
         loc.y += 5;
       }
-      if (keyPressed) {
-        if (key == ' ') {
-          image(sdown, loc.x, loc.y, szx, szy);
-        }
-      }
     }
   }
 
-    boolean nextlevel() { 
-      if (loc.x > width) {
-        loc.x=0;
+  boolean nextlevel() { 
+    if (loc.x > width) {
+      loc.x=0;
 
-        return true;
-      } else {
-        return false;
-      }
+      return true;
+    } else {
+      return false;
     }
   }
+}
 
