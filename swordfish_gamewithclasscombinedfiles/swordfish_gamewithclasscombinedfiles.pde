@@ -69,18 +69,19 @@ void draw() {
     text("Level 1", 100, 100);
     swordfish.display();
     swordfish.move();
-    pufferfishes.add(new pufferfish(200, 200));
+    if (pufferfishes.size() < max) {
+      pufferfishes.add(new pufferfish(200, 200));
+    }
     for (int i = 0; i < pufferfishes.size (); i++) 
     {
       pufferfish p = pufferfishes.get(i);
       p.display();
       p.move();
       p.bounce();
-      for (int j=0; j < pufferfishes.size(); j++) 
+      for (int j=0; j < pufferfishes.size (); j++) 
       {
         if (i!=j) {
           pufferfish p2=pufferfishes.get(j);
-          p.collideWith(p2);
         }
       }  
       if (pufferfishes.size() > max) {
