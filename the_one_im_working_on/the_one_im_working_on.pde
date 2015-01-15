@@ -1,3 +1,4 @@
+ArrayList<pufferfish> pufferfishes = new ArrayList<pufferfish>();
 //declare variables
 //swordfish
 PImage s;
@@ -27,9 +28,9 @@ PImage school;
 float life = 3;
 //background level 3
 PImage spongebob;
-// background level 4
 PImage finish;
 Player swordfish;
+int max;
 void setup() {
   colorMode(HSB, 360, 100, 100);
   size(1000, 625);
@@ -42,6 +43,8 @@ void setup() {
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
   finish = loadImage("final.jpg");
+  max = 3;
+
   //change location
   loc = new PVector(0, 3*height/4);
 
@@ -50,7 +53,7 @@ void setup() {
   swordfish=new Player();
 }
 void draw() {
-  println(life);
+  println(pufferfishes.size());
   background(oceanmenu);
   textSize(60);
   text("Selachimorpha", width/2-200, height/2-100);
@@ -59,18 +62,36 @@ void draw() {
   fill(360);
   textSize(40);
   text("Start", width/2-45, 540);
+  // level 1
   if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
     running = 1;
   } else if (running == 1) {
-
     background(bruce);
     textSize(60);
     text("Level 1", 100, 100);
     swordfish.display();
     swordfish.move();
+    if (pufferfishes.size() < max) {
+      pufferfishes.add(new pufferfish(200, 200));
+    }
+    for (int i = 0; i < pufferfishes.size (); i++) 
+    {
+      pufferfish p = pufferfishes.get(i);
+      p.display();
+      p.move();
+      p.bounce();
+      for (int j=0; j < pufferfishes.size (); j++) 
+      {
+        if (i!=j) {
+          pufferfish p2=pufferfishes.get(j);
+        }
+      }  
+      if (pufferfishes.size() > max) {
+        pufferfishes.remove(0);
+      }
+    }
   }
 
-  //    image(s, loc.x, loc.y, szx, szy);
 
   //level 2
   if (swordfish.nextlevel() == true) {
@@ -90,7 +111,7 @@ void draw() {
     text("Level 3", 50, 100);
     swordfish.display();
     swordfish.move();
-  } 
+  }
  if (swordfish.nextlevel() == true) {
    running = 4;
 //  if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {

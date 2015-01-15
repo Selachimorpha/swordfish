@@ -28,6 +28,7 @@ PImage school;
 float life = 3;
 //background level 3
 PImage spongebob;
+PImage finish;
 Player swordfish;
 int max;
 void setup() {
@@ -41,6 +42,7 @@ void setup() {
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
+  finish = loadImage("final.jpg");
   max = 3;
 
   //change location
@@ -110,7 +112,17 @@ void draw() {
     swordfish.display();
     swordfish.move();
   }
-
+ if (swordfish.nextlevel() == true) {
+   running = 4;
+//  if (mouseX < width/2+50 && mouseX > width/2-50 && mouseY > 500 && mouseY < 550 && mousePressed) {
+//    running = 4;
+  } else if (running == 4) {
+    background(finish);
+    textSize(60);
+    text("Level 4", 50, 100);
+    swordfish.display();
+    swordfish.move();
+  }
   //ways to die
   if (swordfish.loc.y > height) {
     println("went off the bottom of the screen");
