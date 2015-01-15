@@ -28,6 +28,8 @@ PImage school;
 float life = 3;
 //background level 3
 PImage spongebob;
+//background final level
+PImage finish;
 Player swordfish;
 int max;
 void setup() {
@@ -41,6 +43,7 @@ void setup() {
   bruce = loadImage("nemo-shark.jpg");
   school = loadImage("FishSchool.jpg");
   spongebob = loadImage("spongebobstreet.png");
+   finish = loadImage("barracuda.jpg");
   max = 3;
 
   //change location
@@ -67,8 +70,8 @@ void draw() {
     background(bruce);
     textSize(60);
     text("Level 1", 100, 100);
-//    swordfish.display();
-//    swordfish.move();
+    //    swordfish.display();
+    //    swordfish.move();
     if (pufferfishes.size() < max) {
       pufferfishes.add(new pufferfish(200, 200));
     }
@@ -102,6 +105,8 @@ void draw() {
     text("Level 2", 50, 100);
     swordfish.display();
     swordfish.move();
+
+    // level 3
     if (swordfish.nextlevel() == true) {
       running = 3;
     }
@@ -110,8 +115,37 @@ void draw() {
     textSize(60);
     text("Level 3", 50, 100);
     swordfish.display();
+    swordfish.move(); 
+    if (swordfish.nextlevel() == true) {
+      running = 4;
+    }
+  } else if (running == 4) {
+    background(#000000);
+    textSize(40);
+    text("The final boss lays ahead, he is very dangerous....", 25, height/3);
+    text("Would you like to continue?", width/2-285, height/3+40);
+    rect(width/2-350, height/2+100, 200, 50);
+    textSize(20);
+    fill(#000000);
+    text("Not really but I will", width/2-345, height/2+130);
+    fill(#FFFFFF);
+    rect(width/2+150, height/2+100, 200, 50);
+    fill(#000000);
+    text("Of course!!!", width/2+185, height/2+130);
+    if (mouseX < width/2-150 && mouseX > width/2-350 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
+      running = 5;
+    }
+    if (mouseX < width/2+350 && mouseX > width/2+150 && mouseY > height/2+100 && mouseY < height/2+150 && mousePressed) {
+      running = 5;
+    }
+  } else if (running == 5) {
+    background(finish);
+    textSize(60);
+    text("Final Level", 50, 100);
+    swordfish.display();
     swordfish.move();
   }
+
 
   //ways to die
   if (swordfish.loc.y > height) {
@@ -146,3 +180,4 @@ void draw() {
     }
   }
 }
+
